@@ -3,7 +3,7 @@ import { useState } from "react";
 import AccordionItem from "./AccordionItem";
 
 function Accordion({ content }) {
-  const [openID, setOpenID] = useState(null);
+  const [openID, setOpenID] = useState(1);
 
   return (
     <div>
