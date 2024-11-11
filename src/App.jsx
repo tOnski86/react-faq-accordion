@@ -1,25 +1,15 @@
-import { useEffect, useState } from 'react';
-
 import Accordion from './components/Accordion';
 import Header from './components/Header';
 
+import useFetch from './utilities/useFetch';
+
 function App() {
-  const [state, setState] = useState([]);
-
-  useEffect(function () {
-    async function fetchData() {
-      const res = await fetch('./data/data.json');
-      const data = await res.json();
-      setState(data);
-    }
-
-    fetchData();
-  }, []);
+  const { content } = useFetch();
 
   return (
     <div>
       <Header />
-      <Accordion />
+      <Accordion content={content} />
     </div>
   );
 }
