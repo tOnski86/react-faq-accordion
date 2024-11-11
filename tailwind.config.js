@@ -19,4 +19,5 @@ export default {
 /*
 - Mobile: 375px
 - Desktop: 1440px
+- Weights: 400, 600, 700
 */
