@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 function useFetch() {
   const [content, setContent] = useState([]);
 
   useEffect(function () {
     async function fetchData() {
-      const res = await fetch('./data/data.json');
+      const res = await fetch("./data.json");
       const data = await res.json();
       setContent(data);
     }
