@@ -1,25 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import IconMinus from "/icon-minus.svg";
 import IconPlus from "/icon-plus.svg";
 
-function AccordionItem({ item }) {
-  const { title, text } = item;
-  const [isSelected, setIsSelected] = useState(false);
+function AccordionItem({ item, openID, onOpen }) {
+  const { title, text, id } = item;
+
+  const isOpen = id === openID;
+
+  function handleToggle() {
+    onOpen(isOpen ? null : id);
+  }
 
   return (
     <li
-      className="[&:not(:last-child)]:border-b-2 [&:not(:last-child)]:border-pink [&:not(:last-child)]:pb-4 pt-4 hover:cursor-pointer"
-      onClick={() => setIsSelected((isSelected) => !isSelected)}
+      className="pt-4 hover:cursor-pointer sm:pt-6 [&:not(:last-child)]:border-b-2 [&:not(:last-child)]:border-pink [&:not(:last-child)]:pb-4 sm:[&:not(:last-child)]:pb-6"
+      onClick={handleToggle}
     >
       <div className="flex items-center justify-between gap-4">
-        <h2 className="font-semibold text-md leading-5">{title}</h2>
+        <h2 className="text-md font-semibold leading-5">{title}</h2>
         <img
-          src={`${isSelected ? IconMinus : IconPlus}`}
-          alt={`${isSelected ? "minus icon" : "plus icon"}`}
+          src={`${isOpen ? IconMinus : IconPlus}`}
+          alt={`${isOpen ? "minus icon" : "plus icon"}`}
         />
       </div>
-      {isSelected && <p className="mt-5 text-sm sm:text-base">{text}</p>}
+      {isOpen && <p className="mt-5 text-sm sm:text-base">{text}</p>}
     </li>
   );
 }
